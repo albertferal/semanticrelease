@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restablecer contador</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .btn-reset {
+            font-size: 80px;
+            padding: 65px 100px;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Esta página sirve para restablecer el contador, dale al botón y se hará la magia.</h1>
+    <h1>Una vez pulsado volverás al contador, no hay marcha atrás...</h1>
+    <form action="/reset" method="post">
+        <input class="btn-reset" type="submit" value="¡RESETING MAXIMUS!">
+    </form>
+</body>
+</html>

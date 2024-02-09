@@ -1,0 +1,36 @@
+replicaCount: 3
+
+image:
+  repository: feralbert90/counterkc
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 7070
+
+ingress:
+  enabled: true
+  hosts:
+    - host: localhost
+      paths:
+        - path: /
+          pathType: Prefix
+
+persistentvolumeclaim:
+  enabled: true
+  storageSize: 1Gi
+
+configmap:
+  appConfig: "development"
+  logLevel: "debug"
+  maxConnections: "100"
+
+secret:
+  databaseUrl: "sqlite:///var/lib/sqlite/visitas.db"
+
+autoscaling:
+  enabled: true  # Esta variable controlará si se habilita o no el escalado automático
+  minReplicas: 3  # Número mínimo de réplicas
+  maxReplicas: 10  # Número máximo de réplicas
+  targetCPUUtilizationPercentage: 70  # Umbral de uso de CPU para escalar

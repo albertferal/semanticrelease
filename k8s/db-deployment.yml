@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqlite-db
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sqlite-db
+  template:
+    metadata:
+      labels:
+        app: sqlite-db
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - counter-app
+          topologyKey: kubernetes.io/hostname
+      containers:
+        - name: sqlite-db
+          image: sqlite:latest
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/sqlite
+  volumeClaimTemplates:
+    - metadata:
+        name: db-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sqlite-db
+spec:
+  replicas: 3
+  serviceName: sqlite-db-service
+  selector:
+    matchLabels:
+      app: sqlite-db
+  template:
+    metadata:
+      labels:
+        app: sqlite-db
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - counter-app  # Etiqueta de la aplicación con la que se desea mantener la afinidad
+          topologyKey: kubernetes.io/hostname
+      containers:
+        - name: sqlite-db
+          image: sqlite:latest
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/sqlite
+  volumeClaimTemplates:
+    - metadata:
+        name: db-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
