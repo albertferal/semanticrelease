@@ -3,8 +3,8 @@ name: release-build
 on:
   workflow_run:
     workflows:
-      - "Test"
-    branches: [ main ]
+      - "Testing"
+    branches: [ master ]
     types:
       - completed
 
