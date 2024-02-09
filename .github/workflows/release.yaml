@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   semantic-release:
-    ${{ github.event.workflow_run.conclusion == 'success' && !startsWith(github.event.commits[0].message, 'chore(release):') }}
+    if: "${{ github.event.workflow_run.conclusion == 'success' && !contains(github.event.commits[0].message, 'chore') && !contains(github.event.commits[0].message, 'release') }}"
     name: Semantic Release
     runs-on: ubuntu-latest
     steps:
