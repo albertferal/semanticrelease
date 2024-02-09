@@ -2,10 +2,10 @@ name: Testing
 on:
   pull_request:
     branches:
-      - 'main'
+      - 'master'
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   testing-and-sonarcloud:
@@ -24,7 +24,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r app/requirements.txt
-          
+
       - name: Run Pylint
         run: |
           pylint --fail-under=1.0 app
