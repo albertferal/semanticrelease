@@ -13,6 +13,7 @@ permissions:
   packages: write
   issues: read
   pull-requests: read
+    
       
 jobs:
   semantic-release:
