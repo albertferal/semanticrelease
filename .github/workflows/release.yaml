@@ -96,6 +96,11 @@ jobs:
         run: |
           echo VERSION=$(cat semantic_release_version.txt) >> $GITHUB_ENV
 
+      - name: Print working directory contents
+        run: |
+          ls -al
+          pwd
+
       - name: Build and push Docker image
         if: ${{ env.VERSION != '' }}
         run: make publish
