@@ -5,7 +5,7 @@ PIP		= $(VENV)/bin/pip
 # Variables used to configure docker images
 IMAGE_REGISTRY_DOCKERHUB 	?= feralbert90
 IMAGE_REGISTRY_GHCR			?= ghcr.io
-IMAGE_REPO					= albertferal
+IMAGE_REPO					= albertferal/semanticrelease
 IMAGE_NAME					?= semanticrelease
 VERSION						?= develop
 
