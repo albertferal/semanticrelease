@@ -21,6 +21,9 @@ function update_helm_docs() {
 function update_versions() {
   update_version_helm_chart_files
   update_helm_docs
+# Add these two lines to write the version to semantic_release_version.txt
+  echo "Version generated: ${NEXT_RELEASE_VERSION}"
+  echo "${NEXT_RELEASE_VERSION}" > semantic_release_version.txt
 }
 
 update_versions
