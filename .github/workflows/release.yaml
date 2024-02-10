@@ -95,7 +95,12 @@ jobs:
         id: get_version
         run: |
           echo VERSION=$(cat semantic_release_version.txt) >> $GITHUB_ENV
-          
+      
+      - name: Run update_versions.sh and verify version
+        run: |
+          ./ci-utils/update_versions.sh 1.0.0
+          cat semantic_release_version.txt
+
       - name: Print semantic_release_version.txt
         run: cat semantic_release_version.txt
 
