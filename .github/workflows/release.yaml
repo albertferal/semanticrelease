@@ -126,7 +126,7 @@ jobs:
         run: |
           echo VERSION=${{ needs.semantic-release.outputs.version }} >> $GITHUB_ENV
       
-      #Get release information to determine id of the current release
+      # Get release information to determine id of the current release
       - name: Get release info
         id: get-release-info
         uses: kaliber5/action-get-release@v1
