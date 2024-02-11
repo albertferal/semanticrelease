@@ -103,6 +103,10 @@ jobs:
       - name: Print semantic_release_version.txt
         run: cat semantic_release_version.txt
 
+      - name: Display Makefile content
+        if: ${{ env.VERSION != '' }}
+        run: cat Makefile
+
       - name: Build and push Docker image
         if: ${{ env.VERSION != '' }}
         run: make publish
